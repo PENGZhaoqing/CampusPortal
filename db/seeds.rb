@@ -82,7 +82,7 @@ cooperator1= Cooperator.create!(
 
 
 
-    if Rails.env.production?
+    # Rails.env.production?
       app1=cooperator1.oauth_applications.create!(
           :name => 'app1',
           :redirect_uri => 'https://livedemo.01fanli.com/auth/doorkeeper/callback',
@@ -91,18 +91,15 @@ cooperator1= Cooperator.create!(
           :user_oriented => 'master',
           :picture => File.open(File.join(Rails.root, 'app/assets/images/icon/16.png'))
       )
-    else
-      app1=cooperator1.oauth_applications.create!(
-          :name => 'app1',
-          :redirect_uri => 'http://localhost:3000/auth/doorkeeper/callback',
-          :homepage => 'http://localhost:3000',
-          :description => Faker::Lorem.paragraph(2),
-          :user_oriented => 'master',
-          :picture => File.open(File.join(Rails.root, 'app/assets/images/icon/16.png'))
-      )
     
-    end
-
+      #app1=cooperator1.oauth_applications.create!(
+      #    :name => 'app1',
+      #    :redirect_uri => 'http://localhost:3000/auth/doorkeeper/callback',
+      #    :homepage => 'http://localhost:3000',
+      #    :description => Faker::Lorem.paragraph(2),
+      #    :user_oriented => 'master',
+      #    :picture => File.open(File.join(Rails.root, 'app/assets/images/icon/16.png'))
+      #)
 
 
 User.filter_by_type('master').each do |u|
