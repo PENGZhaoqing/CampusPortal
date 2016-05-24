@@ -81,17 +81,16 @@ cooperator1= Cooperator.create!(
     password_confirmation: 'password')
 
 
-
     # Rails.env.production?
-      app1=cooperator1.oauth_applications.create!(
+      app1=cooperator1.oauth_applications.new(
           :name => 'app1',
-          :redirect_uri => 'https://livedemo.01fanli.com/auth/doorkeeper/callback',
+          :redirect_uri => 'http://livedemo.01fanli.com/sampleapp/auth/doorkeeper/callback',
           :homepage => 'http://livedemo.01fanli.com/sampleapp',
           :description => Faker::Lorem.paragraph(2),
           :user_oriented => 'master',
           :picture => File.open(File.join(Rails.root, 'app/assets/images/icon/16.png'))
       )
-    
+
       #app1=cooperator1.oauth_applications.create!(
       #    :name => 'app1',
       #    :redirect_uri => 'http://localhost:3000/auth/doorkeeper/callback',

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'bootstrap-sass'
-gem 'doorkeeper'
+gem 'doorkeeper', '3.0.1'
 gem 'bcrypt'
 # gem 'will_paginate'
 # gem 'bootstrap-will_paginate'
@@ -11,9 +11,9 @@ gem 'rails_admin'
 gem 'paper_trail'
 # for windows, we need tzinfo-data
 # gem 'tzinfo-data'
-gem 'carrierwave',             '0.10.0'
-gem 'mini_magick',             '3.8.0'
-gem 'fog',                     '1.36.0'
+gem 'carrierwave', '0.10.0'
+gem 'mini_magick', '3.8.0'
+# gem 'fog', '1.36.0'
 
 #in case of ssl problems
 # gem 'certified'
