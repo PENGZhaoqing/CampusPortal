@@ -146,14 +146,14 @@ count =1
 
   3.times do
     app_name=Faker::App.name
-    url =Faker::Company.logo
+    url ="https://smapleapp.com"
     user_oriented=MAP[Random.rand(1..2)]
     # node2, path2=ParserHelper::newtree(4, 4, 7, 2, 10)
     node, path=PortalGate::TreeGenerator.newtree(4)
     app=cooperator.oauth_applications.create!(
         :name => app_name,
         :redirect_uri => "#{url}/auth/doorkeeper/callback",
-        :homepage => url,
+        :homepage => "http://sampleapp.com",
         :description => Faker::Lorem.paragraph(2),
         :user_oriented => user_oriented,
         :picture => File.open(File.join(Rails.root, "app/assets/images/icon/#{count}.png"))
