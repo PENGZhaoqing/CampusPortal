@@ -82,9 +82,9 @@ cooperator1= Cooperator.create!(
 
 
     # Rails.env.production?
-      app1=cooperator1.oauth_applications.new(
+      app1=cooperator1.oauth_applications.create!(
           :name => 'app1',
-          :redirect_uri => 'https://livedemo.01fanli.com/sampleapp/auth/doorkeeper/callback',
+          :redirect_uri => 'http://livedemo.01fanli.com/sampleapp/auth/doorkeeper/callback',
           :homepage => 'http://livedemo.01fanli.com/sampleapp',
           :description => Faker::Lorem.paragraph(2),
           :user_oriented => 'master',
