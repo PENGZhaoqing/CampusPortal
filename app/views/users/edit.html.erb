@@ -1,0 +1,23 @@
+<% provide(:title, "Edit user") %>
+
+<div class="row">
+  <div class="col-sm-3 sidenav">
+    <%=render "users/sidenav"%>
+  </div>
+
+  <div class="col-sm-9">
+    <h3 class="text-muted">Edit My Profile</h3>
+    <hr>
+
+    <ol class="breadcrumb">
+      <li><%=link_to "Account "%></a></li>
+      <li class="active">Edit Profile</li>
+    </ol>
+    <hr>
+
+    <%= render "users/form" %>
+  </div>
+
+</div>
+
+

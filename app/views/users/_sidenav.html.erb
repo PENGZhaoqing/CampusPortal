@@ -1,0 +1,25 @@
+<div class="well text-center">
+  <h4><%= @user.name %></h4>
+  <!--<img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">-->
+  <%= image_tag @user.icon.url if @user.icon? %>
+</div>
+
+<div class="panel list-group">
+  <%= link_to 'Account', "#", class: "list-group-item", data: {toggle: "collapse", target: "#account"} %>
+  <div id="account" class="sublinks collapse">
+    <%= link_to user_path(@user), class: "list-group-item" do %>
+        <span class="glyphicon glyphicon-chevron-right"></span> My Profile
+    <% end %>
+    <%= link_to edit_user_path(@user), class: "list-group-item" do %>
+        <span class="glyphicon glyphicon-chevron-right"></span> Edit Profile
+    <% end %>
+  </div>
+
+  <%= link_to "Applications", "#", class: "list-group-item", data: {toggle: "collapse", target: "#application"} %>
+  <div id="application" class="sublinks collapse">
+    <%= link_to applications_user_path(@user), class: "list-group-item" do %>
+        <span class="glyphicon glyphicon-chevron-right"></span>Associated Applications <span class="label label-info pull-right"><%= @user.applications.count %></span>
+    <% end %>
+  </div>
+
+</div>

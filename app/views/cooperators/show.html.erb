@@ -1,0 +1,68 @@
+<% provide(:title, @cooperator.name) %>
+
+<div class="row">
+  <div class="col-sm-3 sidenav">
+    <%= render "cooperators/sidenav" %>
+  </div>
+
+  <div class="col-sm-8 ">
+
+    <h3 class="text-muted">Show Profile</h3>
+    <hr>
+    <ol class="breadcrumb">
+      <li><%=link_to "Account "%></a></li>
+      <li class="active">My Profile</li>
+    </ol>
+    <hr>
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @cooperator.name %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+
+          <div class="col-md-3 col-lg-3 " align="center">
+            <%= image_tag @cooperator.icon.url if @cooperator.icon? %>
+          </div>
+
+          <div class=" col-md-9 col-lg-9 ">
+            <table class="table table-user-information">
+              <tbody>
+
+              <tr>
+                <td>Name:</td>
+                <td><%= @cooperator.name %></td>
+              </tr>
+
+              <tr>
+                <td>Email:</td>
+                <td><%= @cooperator.email %></td>
+              </tr>
+
+              <tr>
+                <td>Company:</td>
+                <td><%= @cooperator.belongings %></td>
+              </tr>
+
+              <tr>
+                <td>Account Created:</td>
+                <td><%= @cooperator.created_at.to_formatted_s(:long) %></td>
+              </tr>
+
+              <tr>
+                <td>Last Updated:</td>
+                <td><%= @cooperator.updated_at.to_formatted_s(:long) %></td>
+              </tr>
+
+              </tbody>
+            </table>
+
+            <%= button_to "Edit Profile", edit_cooperator_path(@cooperator), method: :get, class: "btn btn-info" %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

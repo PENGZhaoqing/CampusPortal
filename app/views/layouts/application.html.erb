@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PortalGate</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+  <%= csrf_meta_tags %>
+</head>
+
+<body class="<%= yield (:body_class) %>">
+
+<%= render partial: 'layouts/header' %>
+<%= render partial: 'layouts/content' %>
+<%= render partial: 'layouts/footer' %>
+
+</body>
+</html>

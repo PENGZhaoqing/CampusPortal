@@ -1,0 +1,27 @@
+<%
+  results=PortalGate::Parser.default_traversal(path, parsed_array)
+  #next_path储存下一级的path
+  next_path=Array.new(path)
+  #temp_path储存现在的path,便于后面还原已经改变的next_path
+  temp_path=Array.new(path)
+  display_info={
+      1 => 'Navbar',
+      2 => 'Sidebar',
+      3 => 'Block'
+  }
+
+  #在距离叶节点还有一级的地方就不要再render了,不然results会为[ ]
+  #ruby是对象传递,两个数组不能直接等于连接,不然一个修改了,另外一个也要跟着修改
+%>
+
+<ul>
+  <% results.each do |show| %>
+      <li>
+        <%= display_info[temp_path.count] -%> <%= show -%> <%= temp_path -%>
+        <% if !PortalGate::Parser.default_traversal(next_path<<show, parsed_array).nil? %>
+            <%= render 'node', path: next_path,parsed_array: parsed_array %>
+        <% end %>
+        <% next_path=Array.new(temp_path) %>
+      </li>
+  <% end %>
+</ul>

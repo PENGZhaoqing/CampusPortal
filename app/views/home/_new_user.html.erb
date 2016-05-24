@@ -1,0 +1,29 @@
+<% provide(:title, "Uers Log in") %>
+<h3 class="text-muted">Users Log in</h3>
+
+<div class="well">
+  <%= form_for(:session, url: session_user_login_path) do |f| %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :password %>
+      <text color="blue"><%= link_to "(forgot password?)", new_password_reset_path,{:style=>'color:red;'}  %></text>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <div class="col-sm-offset-1">
+        <%= f.label :remember_me, class: "checkbox inline" do %>
+            <%= f.check_box :remember_me %>
+            <span class="small">Remember me on this computer</span>
+        <% end %>
+      </div>
+
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+  <% end %>
+  <br>
+  New user? <%= link_to "Sign up now!", new_user_path,{:style=>'color:green;'} %>
+
+</div>
+
+<%= link_to "Login as Cooperator",root_url(login_role:"cooperator"),{:style=>'color:blue;'}  %>
+<p><%= link_to "Login as Admin!",root_url(login_role:"admin"),{:style=>'color:blue;'}  %></p>

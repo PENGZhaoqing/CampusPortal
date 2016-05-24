@@ -1,0 +1,29 @@
+<!--<h4 class="text-muted">Wow, here is the door that you can manage the access of this user :)</h4>-->
+
+<table class="table table-condensed table-striped table-hover">
+  <thead>
+  <tr>
+    <th><%= t('.App id') %></th>
+    <th><%= t('.Name') %></th>
+    <th>CallBack Url</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @object.applications.each do |app| %>
+      <%access=@object.resource.accesses.find_by(app_id: app.id)%>
+      <tr>
+        <td><%= app.id %></td>
+        <td><%= app.name %></a></td>
+        <td><%= app.redirect_uri %></a></td>
+        <td><%= button_to "Manage Access", main_app.admin_edit_user_access_path(@object,app), method: :get, class: "btn-xs btn-success" %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<script type="text/javascript" charset="utf-8">
+  // Javascript magic that loads a users auth credentials into the Admin's
+  // client and redirects to the user portal when ready.
+</script>

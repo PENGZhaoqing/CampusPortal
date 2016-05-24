@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-sm-3 sidenav">
+    <%= render "cooperators/sidenav" %>
+  </div>
+
+  <div class="col-sm-9">
+    <h3 class="text-muted">Add users to <%= @application.name %></h3>
+    <hr>
+
+    <ol class="breadcrumb">
+      <li><%=link_to "Applications List",applications_cooperator_path(@cooperator)%></a></li>
+      <li><%=link_to "Application #{@application.id}",oauth_application_path(@application)%></a></li>
+      <li class="active">Add Users</li>
+    </ol>
+
+    <hr>
+
+    <ul class="nav nav-tabs">
+      <li><%= link_to "Users List", cooperator_list_users_path(@application), class: 'btn btn-link' %></li>
+      <li class="active"><%= link_to "Add User", class: 'btn btn-link' %></li>
+    </ul>
+
+    <br>
+
+    <table class="table table-striped table-hover">
+      <thead>
+      <tr>
+        <th><%= t('.name') %></th>
+        <th><%= t('.role') %></th>
+        <th><%= t('department') %></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @users.each do |user| %>
+          <tr id="application_<%= user.id %>">
+            <td><%= user.name %></td>
+            <td><%= user.role %></a></td>
+            <td><%= user.department %></a></td>
+            <td><%= button_to "assocaite", associate_user_access_path(user, @application), method: :get, class: "btn-xs btn-success" %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

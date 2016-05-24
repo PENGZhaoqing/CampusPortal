@@ -1,0 +1,29 @@
+<% provide(:title, "Log in as Cooperator") %>
+
+<h3 class="text-muted">Cooperators Login</h3>
+
+<div class="well">
+  <%= form_for(:session, url: session_cooperator_login_path) do |f| %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <div class="col-sm-offset-1">
+        <%= f.label :remember_me, class: "checkbox inline" do %>
+            <%= f.check_box :remember_me %>
+            <span class="small">Remember me on this computer</span>
+        <% end %>
+      </div>
+
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+  <% end %>
+
+  <br>
+  New cooperator? <%= link_to "Join us now!", new_cooperator_path,{:style=>'color:green;'}  %>
+</div>
+
+<%= link_to "Login as User",root_url,{:style=>'color:blue;'}  %>
+<p><%= link_to "Login as Admin!",root_url(login_role:"admin"),{:style=>'color:blue;'}  %></p>

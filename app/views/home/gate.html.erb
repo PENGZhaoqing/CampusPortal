@@ -1,0 +1,74 @@
+
+<div class="container">
+  <div class="row">
+    <div class="container col-sm-8">
+
+      <h3 class="text-muted">Education Management Platform</h3>
+      <hr>
+
+      <div class="row">
+        <% @application.each do |application| %>
+            <div class=" container-fluid col-sm-6">
+              <div class="height-controller">
+                <div class="container-fluid col-sm-3">
+                  <br>
+                  <%= image_tag application.picture.url if application.picture? %>
+                </div>
+
+                <div class="container-fluid col-sm-9">
+                  <h4><%= application.name %></h4>
+                  <p class="text-muted"><%= truncate(application.description, length: 60) %></p>
+                  <br>
+                </div>
+
+              </div>
+            </div>
+        <% end %>
+
+      </div>
+
+      <!--<h3 class="text-muted">Cooperator Education Service Platform</h3>-->
+      <!--<hr>-->
+
+    </div>
+
+
+    <div class="panel panel-default col-sm-4">
+
+      <% if params[:login_role]=="admin" %>
+          <%= render "new_admin" %>
+      <% end %>
+
+      <% if params[:login_role]=="cooperator" %>
+          <%= render "new_cooperator" %>
+      <% end %>
+
+      <% if params[:login_role].nil? %>
+          <%= render "new_user" %>
+      <% end %>
+
+    </div>
+
+    <div class="panel panel-default col-sm-4">
+      <%= render "home/related_links" %>
+
+    </div>
+  </div>
+
+</div>
+
+
+<%#= render "home/home_item", path: :"Discipline Consititution", title: :"Discipline Consititution", description: :"Discipline professional application, review, and assessment on the point of training application, review, and one data maintenance" %>
+<%#= render "home/home_item", path: :"Teacher-Management", title: :"Teacher Management", description: :"Teacher (tutor) for information purposes, to handle Teacher, teacher data maintenance" %>
+<%#= render "home/home_item", path: :"Recruitment-Management", title: :"Recruitment Management", description: :"Dr. network reported, Specialty catalog maintenance, performance management, management re-examination admission" %>
+<%#= render "home/home_item", path: :"Registration-Center", title: :"Registration Center", description: :"Park focused on teaching the new students registration, medical handle, handle organizational relationships" %>
+<%#= render "home/home_item", path: :"Registration-Management", title: :"Registration Management", description: :"Student semester registration, data collection" %>
+<%#= render "home/home_item", path: :"Status-Management", title: :"Status Management", description: :"Student record archives information collection, maintenance, statistics, reporting" %>
+<%#= render "home/home_item", path: :"Course-Selection", title: :"Course Selection", description: :"Student enrollment, course evaluation, curriculum query results" %>
+<%#= render "home/home_item", path: :"Academic-Affairs", title: :"Academic Affairs", description: :"Courses, performance management, configuration Teaching Resources" %>
+<%#= render "home/home_item", path: :"Student-Activity", title: :"Student Activity", description: :"Student association management, event management, incentive and student management, student comprehensive evaluation" %>
+<%#= render "home/home_item", path: :"Training-Guidance", title: :"Training Guidance", description: :"Graduate student mentoring process management, including training programs, assessment, working papers" %>
+<%#= render "home/home_item", path: :"Academic-Degree", title: :"Academic Degree", description: :"Degree reporting and review management degree, a degree in data maintenance" %>
+<%#= render "home/home_item", path: :"Employment", title: :"Employment Management", description: :"Graduate employment data collection, maintenance, query, statistics, reporting" %>
+<%#= render "home/home_item", path: :"Alumni-Management", title: :"Alumni Management", description: :"Alumni user services, community services, resources and services, interactive alumni" %>
+<%#= render "home/home_item", path: :"Accommodation", title: :"Accomodation Management", description: :"Student accommodation management, information inquiry, and out of the apartment identification"%>

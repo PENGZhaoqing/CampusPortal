@@ -1,0 +1,28 @@
+<div class="well text-center">
+  <h4><%= @cooperator.name %></h4>
+  <!--<img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">-->
+  <%= image_tag @cooperator.icon.url if @cooperator.icon? %>
+</div>
+
+<div class="panel list-group">
+  <%= link_to 'Account', "#", class: "list-group-item", data: {toggle: "collapse", target: "#account"} %>
+  <div id="account" class="sublinks collapse">
+    <%= link_to cooperator_path(@cooperator), class: "list-group-item" do %>
+        <span class="glyphicon glyphicon-chevron-right"></span> My Profile
+    <% end %>
+    <%= link_to edit_cooperator_path(@cooperator), class: "list-group-item" do %>
+        <span class="glyphicon glyphicon-chevron-right"></span> Edit Profile
+    <% end %>
+  </div>
+
+  <%= link_to "Applications", "#", class: "list-group-item", data: {toggle: "collapse", target: "#application"} %>
+  <div id="application" class="sublinks collapse">
+    <%= link_to applications_cooperator_path(@cooperator), class: "list-group-item" do %>
+        <span class="glyphicon glyphicon-chevron-right"></span> My Applications <span class="label label-info pull-right"><%= @cooperator.oauth_applications.count %></span>
+    <% end %>
+    <%= link_to new_oauth_application_path, class: "list-group-item" do %>
+        <span class="glyphicon glyphicon-chevron-right"></span> Create New One
+    <% end %>
+  </div>
+
+</div>

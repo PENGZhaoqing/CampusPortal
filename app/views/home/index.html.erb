@@ -1,0 +1,15 @@
+<% content_for :body_class, "body-background" %>
+
+<% @application.each do |app| %>
+    <%# render "home/icon", path: item.id, title: HomeHelper::APP_MAP[item.id],website_url:item.homepage%>
+    <div class="col-sm-2">
+      <div class="icon-container">
+        <%= link_to app.homepage do %>
+            <%= image_tag app.picture.url if app.picture? %>
+            <h5><%= app.name %></h5>
+        <% end %>
+      </div>
+    </div>
+
+<% end %>
+
