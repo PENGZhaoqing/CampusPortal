@@ -9,7 +9,6 @@ gem 'faker'
 gem 'rails_admin'
 # gem 'cancancan'
 gem 'paper_trail'
-gem  'rubytree'
 # for windows, we need tzinfo-data
 # gem 'tzinfo-data'
 gem 'carrierwave',             '0.10.0'
