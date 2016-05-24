@@ -82,7 +82,7 @@ cooperator1= Cooperator.create!(
 
 app1=cooperator1.oauth_applications.create!(
     :name => 'app1',
-    :redirect_uri => 'http://localhost:3000/auth/doorkeeper/callback',
+    :redirect_uri => 'https://localhost:3000/auth/doorkeeper/callback',
     :homepage => 'http://localhost:3000',
     :description => Faker::Lorem.paragraph(2),
     :user_oriented => 'master',
@@ -113,7 +113,7 @@ User.first.resource.accesses.create(
 
 app2=cooperator1.oauth_applications.create!(
     :name => 'app2',
-    :redirect_uri => 'http://localhost:3003/auth/doorkeeper/callback',
+    :redirect_uri => 'https://localhost:3003/auth/doorkeeper/callback',
     :homepage => 'http://localhost:3003',
     :description => Faker::Lorem.paragraph(2),
     :user_oriented => 'undergraduate',
