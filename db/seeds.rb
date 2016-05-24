@@ -80,14 +80,30 @@ cooperator1= Cooperator.create!(
     icon: File.open(File.join(Rails.root, 'app/assets/images/user_icon/default.png')),
     password_confirmation: 'password')
 
-app1=cooperator1.oauth_applications.create!(
-    :name => 'app1',
-    :redirect_uri => 'https://localhost:3000/auth/doorkeeper/callback',
-    :homepage => 'http://localhost:3000',
-    :description => Faker::Lorem.paragraph(2),
-    :user_oriented => 'master',
-    :picture => File.open(File.join(Rails.root, 'app/assets/images/icon/16.png'))
-)
+
+
+    if Rails.env.production?
+      app1=cooperator1.oauth_applications.create!(
+          :name => 'app1',
+          :redirect_uri => 'https://livedemo.01fanli.com/auth/doorkeeper/callback',
+          :homepage => 'http://livedemo.01fanli.com/sampleapp',
+          :description => Faker::Lorem.paragraph(2),
+          :user_oriented => 'master',
+          :picture => File.open(File.join(Rails.root, 'app/assets/images/icon/16.png'))
+      )
+    else
+      app1=cooperator1.oauth_applications.create!(
+          :name => 'app1',
+          :redirect_uri => 'http://localhost:3000/auth/doorkeeper/callback',
+          :homepage => 'http://localhost:3000',
+          :description => Faker::Lorem.paragraph(2),
+          :user_oriented => 'master',
+          :picture => File.open(File.join(Rails.root, 'app/assets/images/icon/16.png'))
+      )
+    
+    end
+
+
 
 User.filter_by_type('master').each do |u|
   app1.users<<u
