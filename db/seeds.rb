@@ -146,7 +146,7 @@ count =1
 
   3.times do
     app_name=Faker::App.name
-    url =Faker::Internet.url
+    url =Faker::Company.logo
     user_oriented=MAP[Random.rand(1..2)]
     # node2, path2=ParserHelper::newtree(4, 4, 7, 2, 10)
     node, path=PortalGate::TreeGenerator.newtree(4)
