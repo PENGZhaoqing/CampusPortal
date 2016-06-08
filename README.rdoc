@@ -1,28 +1,7 @@
 == Portalgate(Rails_admin+Doorkeeper)
 
 Portalgate is a campus portals information system for Chinese Academy of Science, which is developed to provide as unified access entrance for the faculties, students and campus application developers.   
+
 This repertory is the main portal and we have a sample application just for [demo](https://github.com/PENGZhaoqing/sample_app) 
 
-Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
