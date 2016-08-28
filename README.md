@@ -1,4 +1,4 @@
-== Portalgate(Rails_admin+Doorkeeper)
+# Portalgate(Rails_admin+Doorkeeper)
 
 Portalgate is a campus portals information system for Chinese Academy of Science, which is developed to provide as unified access entrance for the faculties, students and campus application developers.   
 
