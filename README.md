@@ -47,12 +47,18 @@ $ cd UcasPortal
 $ bundle install
 $ rake db:migrate
 $ rake db:seed
+$ rails s 
 ```
 
+### Configuration
 
-### Deployment
+* Mail Service
+* 
 
-#### Prerequisities
+
+## Deployment
+
+### Prerequisities
 * Ubantu 14.04 
 * [Phusion passenger](https://www.phusionpassenger.com/)
 * [Apache] (https://httpd.apache.org/download.cgi) 
