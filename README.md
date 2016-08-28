@@ -24,8 +24,7 @@ UcasPortal depends on doorkeeper gem and rails_admin gem, and also use bootstrap
 
 ### Prerequisities
 
-### Developement
-* System(Mac OS/Linux)
+#### For Developement (Mac OS/Linux)
 * [Bundler](http://bundler.io/)
 * [Git](https://help.github.com/articles/set-up-git)
 * [Rails 4.2.x](http://rubyonrails.org/download)
@@ -33,12 +32,12 @@ UcasPortal depends on doorkeeper gem and rails_admin gem, and also use bootstrap
 * [Ruby 2.2.x](https://www.ruby-lang.org/en/downloads/)
 * ...
 
-### Deployment
+#### For Deployment
 * ...
 * [Phusion passenger](https://www.phusionpassenger.com/)
 * [Apache] (https://httpd.apache.org/download.cgi) 
 
-### Dependencies
+#### Ruby Dependencies
 
 * [Doorkeeper](https://github.com/doorkeeper-gem/doorkeeper)
 * [Rails_admin](https://github.com/sferik/rails_admin)
