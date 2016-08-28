@@ -1,8 +1,8 @@
 # UcasPortal (Doorkeeper)
 
-## Introduciton
-
 UcasPortal is a campus portals information system for Chinese Academy of Science, which is developed to provide as unified access entrance for the faculties, students and campus application developers.
+
+## Introduciton
 
 UcasPortal ultizes [OAuth 2.0](https://oauth.net/2/) protocol to achieve the interactive communication within mulitple heterogeneous web apps, therefore, UcasPortal can act as the main login panel for campus users and web app developers who are going to conncet their apps with UcasPortal. 
 
@@ -19,13 +19,37 @@ Developers could login in UcasPortal and create new apps and configue the OAuth 
 This repertory is the main portal and we have a sample application just for [demo](https://github.com/PENGZhaoqing/UcasPortal_SampleApp) 
 
 ## Getting Started
- 
+
+UcasPortal depends on doorkeeper gem and rails_admin gem, and also use bootstrap for front end rendering.
+
 ### Prerequisities
 
+### Developement
+* System(Mac OS/Linux)
+* [Bundler](http://bundler.io/)
+* [Git](https://help.github.com/articles/set-up-git)
+* [Rails 4.2.x](http://rubyonrails.org/download)
+* [RubyGems](https://rubygems.org/)
+* [Ruby 2.2.x](https://www.ruby-lang.org/en/downloads/)
+* ...
+
+### Deployment
+* ...
+* [Phusion passenger](https://www.phusionpassenger.com/)
+* [Apache] (https://httpd.apache.org/download.cgi) 
+
+### Dependencies
+
+* [Doorkeeper](https://github.com/doorkeeper-gem/doorkeeper)
+* [Rails_admin](https://github.com/sferik/rails_admin)
+* [Bootstrap](http://getbootstrap.com/) 
+* ...
 
 ### Installation
 
 ```
+$ git clone https://github.com/PENGZhaoqing/UcasPortal
+$ cd UcasPortal
 $ bundle install
 $ rake db:migrate
 $ rake db:seed
