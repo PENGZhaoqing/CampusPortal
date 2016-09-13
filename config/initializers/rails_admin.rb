@@ -9,7 +9,7 @@ RailsAdmin.config do |config|
 
   # config.authorize_with :cancan, AdminAbility
 
-  config.included_models = ['User','Resource','Access','Cooperator','Relationship', 'Doorkeeper::Application','Doorkeeper::AccessGrant','Doorkeeper::AccessToken']
+  config.included_models = ['User','Access','Relationship', 'Doorkeeper::Application','Doorkeeper::AccessGrant','Doorkeeper::AccessToken']
 
   # config.model ['Relationship'] do
   #   navigation_label 'Association'
@@ -21,12 +21,12 @@ RailsAdmin.config do |config|
 
   # == Authenticate ==
   config.authorize_with do
-    if current_admin.nil?
-      redirect_to main_app.root_url(login_role:'admin') , flash: {:warning => 'please login as admin first'}
+    unless admin_logged_in?
+      redirect_to main_app.root_url , flash: {:danger => 'please login as admin first'}
     end
   end
 
-  config.current_user_method(&:current_admin)
+  config.current_user_method(&:current_user)
 
   ### Popular gems integration
 
@@ -43,7 +43,7 @@ RailsAdmin.config do |config|
   # config.authorize_with :pundit
 
   ## == PaperTrail ==
-  config.audit_with :paper_trail, 'Cooperator', 'PaperTrail::Version' # PaperTrail >= 3.0.0
+  config.audit_with :paper_trail, 'User', 'PaperTrail::Version' # PaperTrail >= 3.0.0
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
   config.actions do

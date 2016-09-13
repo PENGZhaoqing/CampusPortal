@@ -1,8 +1,6 @@
-
-
 <div class="row">
   <div class="col-sm-3 sidenav">
-    <%= render "cooperators/sidenav" %>
+    <%= render "shared/sidenav" %>
   </div>
 
   <div class="col-sm-8">
@@ -10,7 +8,7 @@
     <hr>
 
     <ol class="breadcrumb">
-      <li><%= link_to "Applications List ", applications_cooperator_path(@cooperator) %></a></li>
+      <li><%= link_to "Applications List ", oauth_applications_path %></a></li>
       <li class="active">Create New App</li>
     </ol>
     <hr>

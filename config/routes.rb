@@ -2,60 +2,29 @@ Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-
   use_doorkeeper do
     controllers :applications => 'oauth/applications'
   end
 
-  get '/oauth/applications/:id/add_users' => 'oauth/applications#add_users', as: :cooperator_add_users
-  get '/oauth/applications/:id/list_users' => 'oauth/applications#list_users', as: :cooperator_list_users
-  # get '/oauth/applications/:application_id/users/:id/disassociate' => 'oauth/applications#disassociate',as: :cooperator_disassociate_user
-  # get '/oauth/applications/:application_id/users/:id/associate' => 'oauth/applications#associate',as: :cooperator_associate_user
-
-
   get 'home/index'
   root 'home#gate'
-
   get '/me' => 'application#me'
-
   get 'password_resets/new'
   get 'password_resets/cooperator_edit'
-
-  namespace :session do
-    post 'user/login' => 'sessions#create_user'
-    delete 'user/logout' => 'sessions#destroy_user'
-    post 'admin/login' => 'sessions#create_admin'
-    delete 'admin/logout' => 'sessions#destroy_admin'
-    post 'cooperator/login' => 'sessions#create_cooperator'
-    delete 'cooperator/logout' => 'sessions#destroy_cooperator'
-  end
-
-
-  resources :users, except: [:index] do
-
-    resources :access, only: [:update] do
-      member do
-        get 'cooperator_edit'
-        get 'admin_edit'
-        get 'disassociate'
-        get 'associate'
-      end
-    end
-
-    member do
-      get 'applications'
-    end
-  end
-
-  resources :cooperators, except: [:index] do
-    member do
-      get 'applications'
-    end
-  end
+  post 'user/login' => 'sessions#create'
+  delete 'user/logout' => 'sessions#destroy'
 
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
 
+  resources :users do
+    resources :access, only: [:update, :edit] do
+      member do
+        get 'disassociate'
+        get 'associate'
+      end
+    end
+  end
 
 # The priority is based upon order of creation: first created -> highest priority.
 # See how all your routes lay out with "rake routes".

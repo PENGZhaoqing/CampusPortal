@@ -1,0 +1,50 @@
+<div class="well text-center">
+  <h4><%= current_user.name %></h4>
+  <!--<img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">-->
+  <%= image_tag current_user.icon.url if current_user.icon? %>
+</div>
+
+<div class="list-group" id="accordion">
+
+  <%= link_to 'Account Management', "#", class: "list-group-item", data: { toggle: "collapse", target: "#account"} %>
+  <div id="account" class="collapse in">
+    <%= link_to user_path(current_user), class: "list-group-item" do %>
+        <span class="glyphicon glyphicon-chevron-right"></span> My Profile
+    <% end %>
+    <%= link_to edit_user_path(current_user), class: "list-group-item" do %>
+        <span class="glyphicon glyphicon-chevron-right"></span> Edit Profile
+    <% end %>
+  </div>
+
+  <%= link_to "Apps Management", "#", class: "list-group-item", data: {toggle: "collapse", target: "#apps"} %>
+  <div id="apps" class="collapse">
+    <%= link_to oauth_applications_path, class: "list-group-item" do %>
+        <span class="glyphicon glyphicon-chevron-right"></span> My Apps
+        <span class="label label-info pull-right">
+          <% if developer_logged_in? %>
+               <%= current_user.oauth_applications.count %>
+          <% else %>
+               <%= current_user.applications.count %>
+          <% end %>
+        </span>
+    <% end %>
+
+    <% if developer_logged_in? %>
+        <%= link_to new_oauth_application_path, class: "list-group-item" do %>
+            <span class="glyphicon glyphicon-chevron-right"></span> Create new one
+        <% end %>
+    <% end %>
+
+  </div>
+
+  <% if developer_logged_in? %>
+      <%= link_to "User Management", "#", class: "list-group-item", data: {toggle: "collapse", target: "#users"} %>
+      <div id="users" class="sublinks collapse">
+        <% current_user.oauth_applications.each do |app| %>
+            <%= link_to users_path(app_id: app.id, opt: 'list'), class: "list-group-item" do %>
+                <span class="glyphicon glyphicon-chevron-right"></span> <%= app.name %>
+            <% end %>
+        <% end %>
+      </div>
+  <% end %>
+</div>

@@ -1,27 +1,20 @@
-require "portal_gate/parser"
-
 class HomeController < ApplicationController
   include HomeHelper
 
   def index
-
-    if current_admin
+    if admin_logged_in?
       @application=Doorkeeper::Application.all
+    elsif developer_logged_in?
+      @application=current_user.oauth_applications
+    elsif logged_in?
+      @application=current_user.applications
     else
-      if current_cooperator
-        @application=current_cooperator.oauth_applications
-      else
-        if current_user
-          @application=current_user.applications
-        else
-          redirect_to root_url, flash: {danger: 'Please log in first'}
-        end
-      end
-
+      redirect_to root_url, flash: {danger: 'Please log in first'}
     end
   end
 
   def gate
     @application=Doorkeeper::Application.all
   end
+
 end

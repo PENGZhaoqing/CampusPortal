@@ -1,16 +1,15 @@
 <div class="row">
   <div class="col-sm-3 sidenav">
-    <%= render "cooperators/sidenav" %>
+    <%= render "shared/sidenav" %>
   </div>
 
   <div class="col-sm-9">
     <h3 class="text-muted">Show App</h3>
     <hr>
     <ol class="breadcrumb">
-      <li><%= link_to "Applications List", applications_cooperator_path(@cooperator) %></a></li>
-      <li class="active">Application <%=@application.id%></li>
+      <li><%= link_to "Apps List", oauth_applications_path %></a></li>
+      <li class="active">App <%=@application.id%></li>
     </ol>
-
     <hr>
 
     <div class="panel panel-info">
@@ -98,8 +97,6 @@
                           edit_oauth_application_path(@application), method: :get, class: "btn btn-success" %>
             <%= button_to 'Destroy it!', oauth_application_path(@application), class: "btn btn-danger",
                           :method => :delete, :data => {confirm: 'Are you sure?'} %>
-            <%= button_to t('doorkeeper.applications.buttons.access'),
-                          cooperator_list_users_path(@application), method: :get, class: "btn btn-info" %>
           </div>
         </div>
       </div>

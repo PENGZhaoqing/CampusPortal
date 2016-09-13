@@ -7,11 +7,12 @@ Doorkeeper::Application.class_eval do
   # has_and_belongs_to_many :users
   # has_and_belongs_to_many :cooperators
   mount_uploader :picture, PictureUploader
+
   has_many :relationships, foreign_key: 'application_id', dependent: :destroy
   has_many :users, through: :relationships, source: :user
 
   has_paper_trail
-  belongs_to :cooperator
+  belongs_to :developer, class_name: "User", foreign_key: :developer_id
   validate :picture_size
 
   def self.filter_by_type(type)

@@ -1,7 +1,7 @@
 <div class="row">
 
   <div class="col-sm-3 sidenav">
-    <%= render "cooperators/sidenav" %>
+    <%= render "users/sidenav" %>
   </div>
 
   <h3 class="text-muted">Manage Access: <%= @access.resource.name %></h3>
@@ -10,7 +10,7 @@
   <div class="col-sm-9">
 
     <ol class="breadcrumb">
-      <li><%= link_to "Applications List", applications_cooperator_path(@cooperator) %></a></li>
+      <li><%= link_to "Applications List", applications_cooperator_path(current_user) %></a></li>
       <li><%= link_to "Application #{@application.id} ", oauth_application_path(@application) %></a></li>
       <li><%= link_to "Users List", cooperator_list_users_path %></a></li>
       <li><%= link_to "User #{@user.id}", user_path(@user) %></a></li>

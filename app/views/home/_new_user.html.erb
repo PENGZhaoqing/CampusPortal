@@ -2,7 +2,7 @@
 <h3 class="text-muted">Users Log in</h3>
 
 <div class="well">
-  <%= form_for(:session, url: session_user_login_path) do |f| %>
+  <%= form_for(:session, url: user_login_path) do |f| %>
 
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
@@ -24,6 +24,3 @@
   New user? <%= link_to "Sign up now!", new_user_path,{:style=>'color:green;'} %>
 
 </div>
-
-<%= link_to "Login as Cooperator",root_url(login_role:"cooperator"),{:style=>'color:blue;'}  %>
-<p><%= link_to "Login as Admin!",root_url(login_role:"admin"),{:style=>'color:blue;'}  %></p>

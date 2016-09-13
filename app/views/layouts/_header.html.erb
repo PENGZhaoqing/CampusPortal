@@ -5,107 +5,70 @@
       <a href="<%= root_url %>"><img src=<%= image_path("logo.png") %>></a>
     </div>
 
-    <ul class="nav navbar-nav navbar-right">
+    <div class="collapse navbar-collapse">
 
-      <% if admin_logged_in? %>
+      <ul class="nav navbar-nav navbar-right">
 
-          <div class="navbar-text">
-            <%= current_admin.name %>
-          </div>
+        <% if admin_logged_in? %>
 
-          <li>
+            <div class="navbar-text">
+              <%= current_user.name %>
+            </div>
+
             <%= link_to home_index_path do %>
-                admin<span class="glyphicon glyphicon-user"></span>
+              <span class="	glyphicon glyphicon-user"></span> Admin
             <% end %>
-          </li>
 
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span class="	glyphicon glyphicon-cog"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "Dashboard", rails_admin_path %></li>
-            </ul>
-          </li>
+            <li><%= link_to "Dashboard", rails_admin_path %></li>
 
-          <li>
-            <%= link_to session_admin_logout_path, method: :delete do %>
-                <span class="	glyphicon glyphicon-off"></span>
-            <% end %>
-          </li>
-
-      <% else %>
-
-          <% if cooperator_logged_in? %>
-
-              <div class="navbar-text">
-                <%= current_cooperator.belongings %>
-              </div>
-
-              <div class="navbar-text">
-                <%= current_cooperator.name %>
-              </div>
-
-              <li><%= link_to home_index_path do %>
-                    cooperator<span class="glyphicon glyphicon-user"></span>
-                <% end %>
-              </li>
-
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <span class="	glyphicon glyphicon-cog"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to "Profile", cooperator_url(current_cooperator) %></li>
-                  <li><%= link_to "Settings", edit_cooperator_path(current_cooperator) %></li>
-                </ul>
-              </li>
-
-              <li>
-                <%= link_to session_cooperator_logout_path, method: :delete do %>
-                    <span class="	glyphicon glyphicon-off"></span>
-                <% end %>
-              </li>
-
-          <% else %>
-
-              <% if user_logged_in? %>
-
-                  <div class="navbar-text">
-                    <%=current_user.department%>
-                  </div>
-
-                  <div class="navbar-text">
-                    <%= current_user.name %>
-                  </div>
-
-                  <li><%= link_to home_index_path do %>
-                        <%= current_user.role %><span class="glyphicon glyphicon-user"></span>
-                    <% end %>
-                  </li>
-
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                      <span class="	glyphicon glyphicon-cog"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><%= link_to "Profile", user_url(current_user) %></li>
-                      <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-                    </ul>
-                  </li>
-
-                  <li>
-                    <%= link_to session_user_logout_path, method: :delete do %>
-                        <span class="	glyphicon glyphicon-off"></span>
-                    <% end %>
-                  </li>
-
+            <li>
+              <%= link_to user_logout_path, method: :delete do %>
+                  <span class="	glyphicon glyphicon-off"></span>
               <% end %>
+            </li>
 
-          <% end %>
+        <% elsif developer_logged_in? %>
 
-      <% end %>
+            <div class="navbar-text">
+              <span class="	glyphicon glyphicon-home"></span> <%= current_user.company %>
+            </div>
 
-    </ul>
+            <div class="navbar-text">
+              <span class="	glyphicon glyphicon-user"></span> Developer
+            </div>
+
+            <li><%= link_to user_path(current_user) do %>
+                  <span class="	glyphicon glyphicon-cog"></span> <%= current_user.name %>
+              <% end %>
+            </li>
+
+            <li><%= link_to user_logout_path, method: :delete do %>
+                  <span class="	glyphicon glyphicon-off"></span>
+              <% end %>
+            </li>
+
+        <% elsif logged_in? %>
+
+            <div class="navbar-text">
+              <span class="	glyphicon glyphicon-home"></span>  <%= current_user.department %>
+            </div>
+
+            <div class="navbar-text">
+              <span class="	glyphicon glyphicon-user"></span><%= current_user.role %>
+            </div>
+
+            <li><%= link_to user_path(current_user) do %>
+                  <span class="	glyphicon glyphicon-cog"></span> <%= current_user.name %>
+              <% end %>
+            </li>
+
+            <li>
+              <%= link_to user_logout_path, method: :delete do %>
+                  <span class="	glyphicon glyphicon-off"></span>
+              <% end %>
+            </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </nav>

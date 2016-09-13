@@ -11,39 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420034422) do
+ActiveRecord::Schema.define(version: 20160417060028) do
 
   create_table "accesses", force: :cascade do |t|
     t.text     "node"
     t.text     "path"
     t.integer  "app_id"
-    t.integer  "resource_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "accesses", ["app_id"], name: "index_accesses_on_app_id"
-  add_index "accesses", ["resource_id"], name: "index_accesses_on_resource_id"
-
-  create_table "admins", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password_digest"
-    t.string   "remember_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  create_table "cooperators", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "belongings"
-    t.string   "password_digest"
-    t.string   "remember_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.string   "icon"
-  end
+  add_index "accesses", ["user_id"], name: "index_accesses_on_user_id"
 
   create_table "oauth_access_grants", force: :cascade do |t|
     t.integer  "resource_owner_id", null: false
@@ -79,16 +59,18 @@ ActiveRecord::Schema.define(version: 20160420034422) do
     t.string   "secret",                     null: false
     t.text     "redirect_uri",               null: false
     t.string   "scopes",        default: "", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "homepage"
     t.string   "user_oriented"
     t.string   "description"
-    t.integer  "cooperator_id"
+    t.string   "string"
+    t.integer  "developer_id"
+    t.integer  "integer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "picture"
   end
 
-  add_index "oauth_applications", ["cooperator_id"], name: "index_oauth_applications_on_cooperator_id"
+  add_index "oauth_applications", ["developer_id"], name: "index_oauth_applications_on_developer_id"
   add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true
 
   create_table "relationships", force: :cascade do |t|
@@ -100,15 +82,6 @@ ActiveRecord::Schema.define(version: 20160420034422) do
 
   add_index "relationships", ["user_id", "application_id"], name: "index_relationships_on_user_id_and_application_id"
 
-  create_table "resources", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "resources", ["user_id"], name: "index_resources_on_user_id"
-
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
@@ -117,11 +90,14 @@ ActiveRecord::Schema.define(version: 20160420034422) do
     t.string   "department"
     t.string   "password_digest"
     t.string   "remember_digest"
+    t.string   "company"
     t.string   "activation_digest"
     t.boolean  "activated",         default: false
     t.datetime "activated_at"
     t.string   "reset_digest"
     t.string   "reset_sent_at"
+    t.boolean  "admin"
+    t.boolean  "developer"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.string   "icon"

@@ -8,13 +8,16 @@ class CreateUsers < ActiveRecord::Migration
       t.string :department
       t.string :password_digest
       t.string :remember_digest
+      t.string :company
 
       t.string :activation_digest
       t.boolean :activated, default: false
       t.datetime :activated_at
-
       t.string :reset_digest
       t.string :reset_sent_at
+
+      t.boolean :admin
+      t.boolean :developer
 
       t.timestamps null: false
     end

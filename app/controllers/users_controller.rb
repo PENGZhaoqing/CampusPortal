@@ -1,13 +1,10 @@
 class UsersController < ApplicationController
 
-  before_action :logged_in_user, except: [:new, :create], if: :none_cooperator_or_admin
-  before_action :correct_user, except: [:new, :create], if: :none_cooperator_or_admin
-
-  before_action :logged_in_user, only: [:edit, :update, :destroy], if: :cooperator_exist
-
-  before_action :set_user
+  # before_action :logged_in_user, except: [:new, :create]
+  # before_action :correct_user, except: [:update]
 
   def show
+    @user = User.find_by_id(params[:id])
   end
 
   def new
@@ -27,10 +24,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-  end
-
-  def applications
-    @applications=@user.applications
+    @user = User.find_by_id(params[:id])
   end
 
   def update
@@ -44,12 +38,31 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user_log_out
+    log_out
     Doorkeeper::Application.filter_by_type(@user.role).each do |app|
       app.users.delete(@user)
     end
     @user.destroy
     redirect_to root_url, flash: {success: "User deleted"}
+  end
+
+
+  #----------------------------------------------------------------
+
+
+  def list_all
+    @application=Doorkeeper::Application.find_by(id: params[:app_id])
+    @users=User.all-@application.users
+  end
+
+  def index
+    @users=[]
+    @application=Doorkeeper::Application.find_by(id: params[:app_id])
+    User.all.each do |user|
+      if @application.users.find_by_id(user.id).nil?
+        @users<<user
+      end
+    end
   end
 
   private
@@ -61,7 +74,7 @@ class UsersController < ApplicationController
 
   # Confirms a logged-in user.
   def logged_in_user
-    unless user_logged_in? || admin_logged_in?
+    unless logged_in? || admin_logged_in?
       # store_location
       redirect_to root_url, flash: {danger: 'Please log in as User first'}
     end
@@ -73,18 +86,6 @@ class UsersController < ApplicationController
     unless current_user?(@user)
       redirect_to user_path(current_user), flash: {:warning => 'You don not have the access to other user except admin'}
     end
-  end
-
-  def set_user
-    @user = User.find_by_id(params[:id])
-  end
-
-  def none_cooperator_or_admin
-    current_cooperator.nil?&&current_admin.nil?
-  end
-
-  def cooperator_exist
-    current_cooperator
   end
 
 end
