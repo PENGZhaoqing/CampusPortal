@@ -16,7 +16,7 @@
       <thead>
       <tr>
         <th><%= t('.name') %></th>
-        <th><%= t('.callback_url') %></th>
+        <th><%= t('.homepage') %></th>
         <th></th>
       </tr>
 
@@ -25,9 +25,7 @@
       <% @applications.each do |application| %>
           <tr>
             <td><%= application.name %></td>
-            <td><%= application.redirect_uri %></td>
-            <td><%#= button_to 'Show', oauth_application_path(application), method: :get, class: 'btn-xs btn-info' %></td>
-
+            <td><%= application.homepage %></td>
             <% if developer_logged_in? %>
                 <td><%= link_to 'Users', users_path(app_id: application.id),method: :get, class: 'btn btn-sm btn-success' %></td>
                 <td><%= button_to 'Show', oauth_application_path(application), method: :get, class: 'btn-xs btn-info' %></td>

@@ -8,6 +8,10 @@ module SessionsHelper
     logged_in? && current_user.role==role
   end
 
+  def user_logged_in?
+    logged_in? && !current_user.admin &&current_user.developer
+  end
+
   def admin_logged_in?
     logged_in? && current_user.admin
   end

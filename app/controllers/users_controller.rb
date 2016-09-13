@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
-  # before_action :logged_in_user, except: [:new, :create]
-  # before_action :correct_user, except: [:update]
+  before_action :logged_in, except: [:new, :create]
+  before_action :correct_user, only: [:edit, :show, :update, :destroy]
+  before_action :logged_as_developer, only: :index
 
   def show
     @user = User.find_by_id(params[:id])
@@ -49,12 +50,6 @@ class UsersController < ApplicationController
 
   #----------------------------------------------------------------
 
-
-  def list_all
-    @application=Doorkeeper::Application.find_by(id: params[:app_id])
-    @users=User.all-@application.users
-  end
-
   def index
     @users=[]
     @application=Doorkeeper::Application.find_by(id: params[:app_id])
@@ -69,14 +64,14 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password,
-                                 :password_confirmation, :role, :icon, :department)
+                                 :password_confirmation, :role, :icon, :department, :company, :developer)
   end
 
   # Confirms a logged-in user.
-  def logged_in_user
-    unless logged_in? || admin_logged_in?
+  def logged_in
+    unless logged_in?
       # store_location
-      redirect_to root_url, flash: {danger: 'Please log in as User first'}
+      redirect_to root_url, flash: {danger: 'Please log in first'}
     end
   end
 
@@ -85,6 +80,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     unless current_user?(@user)
       redirect_to user_path(current_user), flash: {:warning => 'You don not have the access to other user except admin'}
+    end
+  end
+
+  def logged_as_developer
+    unless developer_logged_in?
+      redirect_to root_url, flash: {danger: 'Please log in as developer first'}
     end
   end
 

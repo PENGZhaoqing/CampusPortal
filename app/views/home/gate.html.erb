@@ -7,19 +7,15 @@
 
       <div class="row">
         <% @application.each do |application| %>
-            <div class=" container-fluid col-sm-6">
-              <div class="height-controller">
-                <div class="container-fluid col-sm-3">
-                  <br>
-                  <%= image_tag application.picture.url if application.picture? %>
-                </div>
-
-                <div class="container-fluid col-sm-9">
-                  <h4><%= application.name %></h4>
-                  <p class="text-muted"><%= truncate(application.description, length: 60) %></p>
-                  <br>
-                </div>
-
+            <div class="container-fluid col-sm-6" style="min-height: 120px;max-height: 120px">
+              <div class="container-fluid col-sm-3">
+                <br>
+                <%= image_tag application.picture.url if application.picture? %>
+              </div>
+              <div class="container-fluid col-sm-9">
+                <h4><%= application.name %></h4>
+                <p class="text-muted"><%= truncate(application.description, length: 100) %></p>
+                <br>
               </div>
             </div>
         <% end %>
@@ -30,7 +26,7 @@
 
 
     <div class="panel panel-default col-sm-4">
-      <%= render "new_user" %>
+      <%= render "login" %>
     </div>
 
     <div class="panel panel-default col-sm-4">

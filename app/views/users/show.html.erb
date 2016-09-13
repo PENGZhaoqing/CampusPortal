@@ -34,25 +34,36 @@
                 <td><%= @user.name %></td>
               </tr>
 
-              <tr>
-                <td>ID:</td>
-                <td><%= @user.number %></td>
-              </tr>
+              <% unless developer_logged_in? %>
+                  <tr>
+                    <td>ID:</td>
+                    <td><%= @user.number %></td>
+                  </tr>
+              <% end %>
 
               <tr>
                 <td>Email:</td>
                 <td><%= @user.email %></td>
               </tr>
 
-              <tr>
-                <td>Department:</td>
-                <td><%= @user.department %></td>
-              </tr>
+              <% if developer_logged_in? %>
+                  <tr>
+                    <td>Company:</td>
+                    <td><%= @user.company %></td>
+                  </tr>
 
-              <tr>
-                <td>Role:</td>
-                <td><%= @user.role %></td>
-              </tr>
+              <% elsif user_logged_in? %>
+                  <tr>
+                    <td>Department:</td>
+                    <td><%= @user.department %></td>
+                  </tr>
+
+                  <tr>
+                    <td>Role:</td>
+                    <td><%= @user.role %></td>
+                  </tr>
+
+              <% end %>
 
               <tr>
                 <td>Account Created:</td>
@@ -73,7 +84,8 @@
             </table>
 
             <%= button_to "Edit Profile", edit_user_path(@user), method: :get, class: "btn btn-info" %>
-
+            <%= button_to 'Destroy Account!', user_path(@user), class: 'btn btn-danger',
+                          :method => :delete, :data => {confirm: 'Are you sure?'} %>
           </div>
         </div>
       </div>

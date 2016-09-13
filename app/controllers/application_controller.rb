@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   def current_resource_owner
     if doorkeeper_token
       user=User.find(doorkeeper_token.resource_owner_id)
-      access=user.resource.accesses.find_by(app_id: doorkeeper_token.application_id)
+      access=user.accesses.find_by(app_id: doorkeeper_token.application_id)
       return {user: user.as_json, access: access.as_json}
     end
   end
