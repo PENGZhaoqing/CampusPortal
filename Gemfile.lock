@@ -102,6 +102,7 @@ GEM
     paper_trail (3.0.9)
       activerecord (>= 3.0, < 5.0)
       activesupport (>= 3.0, < 5.0)
+    pg (0.18.4)
     rack (1.6.4)
     rack-pjax (0.8.0)
       nokogiri (~> 1.5)
@@ -128,6 +129,9 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
     rails_admin (0.8.1)
       builder (~> 3.1)
       coffee-rails (~> 4.0)
@@ -142,6 +146,8 @@ GEM
       remotipart (~> 1.0)
       safe_yaml (~> 1.0)
       sass-rails (>= 4.0, < 6)
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.5)
     railties (4.2.5.1)
       actionpack (= 4.2.5.1)
       activesupport (= 4.2.5.1)
@@ -202,8 +208,10 @@ DEPENDENCIES
   jquery-rails
   mini_magick (= 3.8.0)
   paper_trail
+  pg (~> 0.18.4)
   railroady
   rails (= 4.2.5.1)
+  rails_12factor
   rails_admin
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

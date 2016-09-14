@@ -27,11 +27,11 @@
             <td><%= application.name %></td>
             <td><%= application.homepage %></td>
             <% if developer_logged_in? %>
-                <td><%= link_to 'Users', users_path(app_id: application.id),method: :get, class: 'btn btn-sm btn-success' %></td>
-                <td><%= button_to 'Show', oauth_application_path(application), method: :get, class: 'btn-xs btn-info' %></td>
-                <td><%= button_to 'Edit it', edit_oauth_application_path(application), method: :get, class: 'btn-xs btn-primary' %></td>
-                <td><%= button_to 'Destroy it!', oauth_application_path(application), class: 'btn-xs btn-danger',
-                                  :method => :delete, :data => {confirm: 'Are you sure?'} %></td>
+                <td><%= link_to 'Users', users_path(app_id: application.id, opt: 'list'), method: :get, class: 'btn btn-success btn-xs' %></td>
+                <td><%= link_to 'Show', oauth_application_path(application), method: :get, class: 'btn btn-info btn-xs' %></td>
+                <td><%= link_to 'Edit it', edit_oauth_application_path(application), method: :get, class: 'btn btn-primary btn-xs' %></td>
+                <td><%= link_to 'Destroy it!', oauth_application_path(application), class: 'btn btn-xs btn-danger',
+                                :method => :delete, :data => {confirm: 'Are you sure?'} %></td>
             <% end %>
           </tr>
       <% end %>

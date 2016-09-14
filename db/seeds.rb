@@ -34,24 +34,24 @@ User.create!(name: 'peng2',
              activated: true,
              activated_at: Time.zone.now)
 
-# 20.times do
-#   role = MAP[Random.rand(1..2)]
-#   name = Faker::Name.name
-#   email = Faker::Internet.email
-#   password = 'password'
-#   department =Faker::Commerce.department
-#   number= Faker::Number.number(10)
-#   User.create!(name: name,
-#                email: email,
-#                password: password,
-#                password_confirmation: password,
-#                role: role,
-#                number: number,
-#                department: department,
-#                icon: File.open(File.join(Rails.root, 'app/assets/images/user_icon/default.png')),
-#                activated: true,
-#                activated_at: Time.zone.now)
-# end
+20.times do
+  role = MAP[Random.rand(1..2)]
+  name = Faker::Name.name
+  email = Faker::Internet.email
+  password = 'password'
+  department =Faker::Commerce.department
+  number= Faker::Number.number(10)
+  User.create!(name: name,
+               email: email,
+               password: password,
+               password_confirmation: password,
+               role: role,
+               number: number,
+               department: department,
+               icon: File.open(File.join(Rails.root, 'app/assets/images/user_icon/default.png')),
+               activated: true,
+               activated_at: Time.zone.now)
+end
 
 
 #  seeding cooperator

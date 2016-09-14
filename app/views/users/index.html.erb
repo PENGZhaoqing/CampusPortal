@@ -43,10 +43,10 @@
             <td><%= user.department %></a></td>
 
             <% if params[:opt]=='add' %>
-                <td><%= button_to "Add", associate_user_access_path(user, @application), method: :get, class: "btn-xs btn-success" %></td>
+                <td><%= link_to "Add", associate_user_access_path(user, @application), method: :get, class: "btn btn-xs btn-success" %></td>
             <% elsif params[:opt]=='list' %>
-                <td><%= link_to "Manage Access", edit_user_access_path(user, @application), method: :get, class: 'btn-xs btn-info' %></td>
-                <td><%= button_to "Delete", disassociate_user_access_path(user, @application), method: :get, class: 'btn-xs btn-danger' %></td>
+                <td><%= link_to "Manage Access", edit_user_access_path(user, @application), method: :get, class: 'btn btn-xs btn-info' %></td>
+                <td><%= link_to "Delete", disassociate_user_access_path(user, @application), method: :get, class: 'btn btn-xs btn-danger' %></td>
             <% end %>
 
           </tr>

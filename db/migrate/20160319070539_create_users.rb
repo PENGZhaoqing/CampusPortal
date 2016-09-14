@@ -16,8 +16,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :reset_digest
       t.string :reset_sent_at
 
-      t.boolean :admin
-      t.boolean :developer
+      t.boolean :admin, default: false
+      t.boolean :developer, default: false
 
       t.timestamps null: false
     end

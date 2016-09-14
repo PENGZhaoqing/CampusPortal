@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   def index
     @users=[]
     @application=Doorkeeper::Application.find_by(id: params[:app_id])
-    User.all.each do |user|
+    User.filter_by_users.each do |user|
       if @application.users.find_by_id(user.id).nil?
         @users<<user
       end

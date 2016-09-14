@@ -14,14 +14,14 @@ class AccessController < ApplicationController
   def associate
     @user.applications<<@application
     @user.accesses.create!(node: [1], path: [1], app_id: @application.id)
-    redirect_to users_path(@application, @user),
+    redirect_to users_path(app_id: @application.id),
                 flash: {success: 'user has been associated with this app '}
   end
 
   def disassociate
     @access.destroy
     @user.applications.delete(@application)
-    redirect_to list_all_users_path(@application, @user),
+    redirect_to users_path(app_id: @application.id),
                 flash: {success: 'user has been disassociated with this app '}
   end
 

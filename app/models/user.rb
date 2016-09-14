@@ -50,7 +50,6 @@ class User < ActiveRecord::Base
     update_attribute(:remember_digest, User.digest(remember_token))
   end
 
-
   def forget
     update_attribute(:remember_digest, nil)
   end
@@ -77,6 +76,9 @@ class User < ActiveRecord::Base
     reset_sent_at < 2.hours.ago
   end
 
+  def self.filter_by_users
+    User.where(:developer => false).where(:admin => false)
+  end
 
   private
 
