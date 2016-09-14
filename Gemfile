@@ -49,10 +49,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+group :development do
+  gem 'web-console', '~> 2.0'
+end
 
 group :development, :test do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+
   gem 'railroady'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
