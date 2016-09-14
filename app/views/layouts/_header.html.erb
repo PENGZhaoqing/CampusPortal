@@ -15,9 +15,11 @@
               <%= current_user.name %>
             </div>
 
-            <%= link_to home_index_path do %>
-              <span class="	glyphicon glyphicon-user"></span> Admin
-            <% end %>
+            <li>
+              <%= link_to home_index_path do %>
+                  <span class="	glyphicon glyphicon-user"></span> Admin
+              <% end %>
+            </li>
 
             <li><%= link_to "Dashboard", rails_admin_path %></li>
 

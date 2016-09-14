@@ -10,9 +10,9 @@
     <ol class="breadcrumb">
       <li><%= link_to "App List", oauth_applications_path(current_user) %></a></li>
       <li><%= link_to "App #{@application.id}", oauth_application_path(@application) %></a></li>
-      <% if params[:opt]=='add' %>
+      <% if params[:action]=='add' %>
           <li class="active">New Users</li>
-      <% elsif params[:opt]=='list' %>
+      <% elsif params[:action]=='index' %>
           <li class="active">All Users</li>
       <% end %>
     </ol>
@@ -20,8 +20,8 @@
     <hr>
 
     <ul class="nav nav-tabs">
-      <li class=<%= "active" if params[:opt]=='list' %>><%= link_to "All Users", users_path(app_id: @application.id, opt: 'list'), class: 'btn btn-link' %></li>
-      <li class=<%= "active" if params[:opt]=='add' %>><%= link_to "New User", users_path(app_id: @application.id, opt: 'add'), class: 'btn btn-link' %></li>
+      <li class=<%= "active" if params[:action]=='index' %>><%= link_to "All Users", users_path(app_id: @application.id), class: 'btn btn-link' %></li>
+      <li class=<%= "active" if params[:action]=='add' %>><%= link_to "New User", add_users_path(app_id: @application.id), class: 'btn btn-link' %></li>
     </ul>
 
     <br>
@@ -42,9 +42,9 @@
             <td><%= user.role %></a></td>
             <td><%= user.department %></a></td>
 
-            <% if params[:opt]=='add' %>
+            <% if params[:action]=='add' %>
                 <td><%= link_to "Add", associate_user_access_path(user, @application), method: :get, class: "btn btn-xs btn-success" %></td>
-            <% elsif params[:opt]=='list' %>
+            <% elsif params[:action]=='index' %>
                 <td><%= link_to "Manage Access", edit_user_access_path(user, @application), method: :get, class: 'btn btn-xs btn-info' %></td>
                 <td><%= link_to "Delete", disassociate_user_access_path(user, @application), method: :get, class: 'btn btn-xs btn-danger' %></td>
             <% end %>

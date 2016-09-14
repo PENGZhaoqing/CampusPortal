@@ -1,5 +1,5 @@
 class Access < ActiveRecord::Base
-  belongs_to :resource
+  belongs_to :user
   has_paper_trail
 
   serialize :node, Array
@@ -20,7 +20,6 @@ class Access < ActiveRecord::Base
   end
 
   def check_parseable
-
     if !path_parse(node, path)
       errors.add(:node,:path, "The node path cannot be parsed")
     end

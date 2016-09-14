@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:new, :create, :edit, :update]
 
   resources :users do
+    collection do
+      get :add
+    end
     resources :access, only: [:update, :edit] do
       member do
         get 'disassociate'

@@ -51,13 +51,20 @@ class UsersController < ApplicationController
   #----------------------------------------------------------------
 
   def index
-    @users=[]
     @application=Doorkeeper::Application.find_by(id: params[:app_id])
+    @users=@application.users
+  end
+
+  def add
+    @application=Doorkeeper::Application.find_by(id: params[:app_id])
+    @users=[]
     User.filter_by_users.each do |user|
-      if @application.users.find_by_id(user.id).nil?
-        @users<<user
+      if @application.users.find_by(id: user.id).nil?
+          @users<<user
       end
     end
+    # @application.users
+    render "users/index"
   end
 
   private

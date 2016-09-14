@@ -58,13 +58,13 @@
 
         <div id="users" class="panel-collapse collapse <%= "in" if params[:controller]=='users'&&params[:action]=='index' %>">
           <ul class="list-group">
-            <li class="list-group-item">
-              <% current_user.oauth_applications.each do |app| %>
+            <% current_user.oauth_applications.each do |app| %>
+                <li class="list-group-item">
                   <%= link_to users_path(app_id: app.id, opt: 'list') do %>
                       <span class="glyphicon glyphicon-chevron-right"></span> <%= app.name %>
                   <% end %>
-              <% end %>
-            </li>
+                </li>
+            <% end %>
           </ul>
         </div>
       </div>
