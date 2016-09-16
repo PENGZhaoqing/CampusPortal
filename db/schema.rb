@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20160417060028) do
     t.string   "password_digest"
     t.string   "remember_digest"
     t.string   "company"
+    t.string   "major"
     t.string   "activation_digest"
     t.boolean  "activated",         default: false
     t.datetime "activated_at"

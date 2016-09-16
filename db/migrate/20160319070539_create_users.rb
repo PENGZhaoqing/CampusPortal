@@ -9,6 +9,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password_digest
       t.string :remember_digest
       t.string :company
+      t.string :major
 
       t.string :activation_digest
       t.boolean :activated, default: false

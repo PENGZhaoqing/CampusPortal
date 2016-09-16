@@ -30,7 +30,8 @@
     <%= content_tag :div, class: "form-group#{' has-error' if application.errors[:user_oriented].present?}" do %>
         <%= f.label :user_oriented, class: 'col-sm-2 control-label' %>
         <div class="col-sm-10">
-          <%= f.select :user_oriented, options_for_select(['undergraduate', 'master', 'doctor', 'lecturer', 'associate professor', 'professor', 'executive staff']), {}, class: 'form-control' %>
+          <%= f.text_field :user_oriented, class: 'form-control' %>
+          <text class="text-muted">You can choose role from undergraduate, master, doctor, lecturer, associate professor, professor and executive staff. Using space to separate </text>
           <%= doorkeeper_errors_for application, :user_oriented %>
         </div>
     <% end %>

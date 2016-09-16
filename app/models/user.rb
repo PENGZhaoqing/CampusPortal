@@ -34,6 +34,16 @@ class User < ActiveRecord::Base
     User.where("role = :type", type: type)
   end
 
+  def self.certain_roles(str)
+    user=[]
+    str.split.each do |type|
+      User.filter_by_type(type).each do |each_user|
+        user<<each_user
+      end
+    end
+    return user
+  end
+
   # Returns the hash digest of the given string.
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :

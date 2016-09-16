@@ -3,12 +3,18 @@
 <% @application.each do |app| %>
     <div class="col-sm-2">
       <div class="icon-container">
-        <%= link_to app.homepage do %>
+
+        <% if current_user.admin ||current_user.developer %>
             <%= image_tag app.picture.url if app.picture? %>
-            <h5 style="color: #0f0f0f"><%= app.name %></h5>
+            <h5 style="color: black"><%= app.name %></h5>
+        <% else %>
+            <%= link_to app.homepage do %>
+                <%= image_tag app.picture.url if app.picture? %>
+                <h5 style="color: black"><%= app.name %></h5>
+            <% end %>
         <% end %>
+
       </div>
     </div>
-
 <% end %>
 

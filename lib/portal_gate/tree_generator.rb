@@ -25,7 +25,6 @@ class PortalGate::TreeGenerator
           #对上一深度的每一个节点,产生子节点
           x=Random.rand(min_apps..max_apps)
 
-
           x_numbers_non_repeat_array=(min_app_range..max_app_range).to_a.sort { rand() - 0.5 }[0..x-2]
           x_numbers_non_repeat_array[1]=1
 

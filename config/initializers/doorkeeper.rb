@@ -14,7 +14,7 @@ Doorkeeper.configure do
 
     User.find_by(id: session[:user_id]) || begin
                                              # session[:forwarding_url] = request.fullpath
-      redirect_to root_url, warning: "please login in first"
+      redirect_to root_url, flash: {warning: "please login in first"}
     end
 
   end

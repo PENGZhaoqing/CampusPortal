@@ -64,7 +64,7 @@ GEM
       railties (>= 3.2)
     erubis (2.7.0)
     execjs (2.6.0)
-    faker (1.6.3)
+    faker (1.6.6)
       i18n (~> 0.5)
     font-awesome-rails (4.5.0.1)
       railties (>= 3.2, < 5.1)
@@ -203,7 +203,7 @@ DEPENDENCIES
   carrierwave (= 0.10.0)
   coffee-rails (~> 4.1.0)
   doorkeeper (= 3.0.1)
-  faker
+  faker (= 1.6.6)
   jbuilder (~> 2.0)
   jquery-rails
   mini_magick (= 3.8.0)
