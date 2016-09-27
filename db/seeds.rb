@@ -26,7 +26,7 @@ end
 #  seeding students and teachers
 # ----------------------------------------------------------------------------------
 
-100.times do |index|
+30.times do |index|
   User.create!(name: Faker::Name.name,
                email: "student#{index}@test.com",
                password: 'password',
@@ -114,7 +114,9 @@ app=User.find_by(:email => 'developer1@test.com').oauth_applications.first
 app.update(
     homepage: "#{ENTRANCE_DOMAIN}/auth/doorkeeper",
     redirect_uri: "#{ENTRANCE_DOMAIN}/auth/doorkeeper/callback",
-    name: "Course Selection")
+    name: "Course Selection",
+    picture: File.open(File.join(Rails.root, "app/assets/images/icon/1.png"))
+)
 
 student=User.find_by(:email => 'student1@test.com')
 unless app.users.find_by(id: student.id)
