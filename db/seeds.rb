@@ -108,11 +108,11 @@ User.create(
 
 #-------------------------special case---------------------
 
-ENTRANCE_DOMAIN="http://localhost:3000"
+ENTRANCE_DOMAIN="https://ucas-sampleapp.herokuapp.com"
 
 app=User.find_by(:email => 'developer1@test.com').oauth_applications.first
 app.update(
-    homepage: ENTRANCE_DOMAIN,
+    homepage: "#{ENTRANCE_DOMAIN}/auth/doorkeeper",
     redirect_uri: "#{ENTRANCE_DOMAIN}/auth/doorkeeper/callback",
     name: "Course Selection")
 
