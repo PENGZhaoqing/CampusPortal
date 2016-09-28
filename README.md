@@ -49,14 +49,12 @@ Before getting started, make sure your system has the follwoing requirements:
 * [Rails 4.2.x](http://rubyonrails.org/download)
 * [RubyGems](https://rubygems.org/)
 * [Ruby 2.2.x](https://www.ruby-lang.org/en/downloads/)
-* ...
 
 #### Ruby Dependencies
 
 * [Doorkeeper](https://github.com/doorkeeper-gem/doorkeeper)
 * [Rails_admin](https://github.com/sferik/rails_admin)
 * [Bootstrap](http://getbootstrap.com/) 
-* ...
 
 ### Installation
 
@@ -71,7 +69,7 @@ $ rake db:seed
 $ rails s 
 ```
 
-## Mail Service Config
+## Config Mail Service 
 
  We use 163 mail service for delivering the activation mail, If you would like to use the same service provider, just craete a 163 mail account and configure the following files: (note: make sure your 163 account has open the stmp function)
 
@@ -111,7 +109,7 @@ $ rails s
    }
  ```
 
-## Usage
+## OAuth Usage
 
 We take a rails app as an example to explain how to connect with campus portal using OAuth protocol.
 
@@ -223,7 +221,7 @@ end
 
 ```
 
-## Login Account
+## Login 
 
 The following accounts are created in `db/seed.rb`, you can modify as you want:
 
