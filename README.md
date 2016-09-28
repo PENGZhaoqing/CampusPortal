@@ -74,7 +74,18 @@ $ rails s
 ### Configuration
 
 * Mail Service
-* 
+
+1.create a file `conf/local_env.yml`, and fill in as followings:
+
+```
+163MAIL_USENAME: 'your_mail_account@163.com'
+163MAIL_PASSWORD: 'your_mail_account_password'
+```
+ 
+2.modify the the code in 'app/mailers/application_mailer.rb'
+
+
+
 
 
 ### Usage
