@@ -35,9 +35,13 @@ And we also have an sample course selection system [CourseSelect_en](https://git
 
 <img src="/lib/screenshoot6.png" width="700">
 
+
 ## Getting Started
 
-UcasPortal depends on doorkeeper gem and rails_admin gem, and also use bootstrap for front end rendering.
+CampusPortal is built based on the [Doorkeeper](https://github.com/doorkeeper-gem/doorkeeper) gem to achieve related OAuth function.
+This app also relies on rails_admin gem for back-end management and bootstrap for front end rendering.
+
+Before getting started, make sure your system has the follwoing requirements:
 
 #### System Prerequisities (Mac OS/Linux)
 * [Bundler](http://bundler.io/)
@@ -59,8 +63,8 @@ UcasPortal depends on doorkeeper gem and rails_admin gem, and also use bootstrap
 Execute the following code in local machine and go to `localhost:3000` in your browser
 
 ```
-$ git clone https://github.com/PENGZhaoqing/UcasPortal
-$ cd UcasPortal
+$ git clone https://github.com/PENGZhaoqing/CampusPortal
+$ cd CampusPortal
 $ bundle install
 $ rake db:migrate
 $ rake db:seed
@@ -72,6 +76,34 @@ $ rails s
 * Mail Service
 * 
 
+
+### Usage
+
+1.Student Login
+
+account:`student1@test.com`
+
+password:`password`
+
+2.Teacher Login
+
+account:`teacher1@test.com`
+
+password:`password`
+
+3.Developer Login
+
+account:`developer1@test.com`
+
+password:`password`
+
+4.Admin Login
+
+account:`admin@test.com`
+
+password:`password`
+
+the number in account can be replaced by 2,3... and so on
 
 ## Deployment
 
