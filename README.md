@@ -111,9 +111,75 @@ $ rails s
        :domain => 'www.163.com',
        :enable_starttls_auto => true
    }
-```
+ ```
 
 ### Usage
+
+We take a rails app as an example to explain how to connect with campus portal using OAuth protocol.
+
+1.add omniauth-oauth2 gem to `Gemfile` and run `bundle install`:
+
+`gem 'omniauth-oauth2', '~> 1.3.1'`
+
+2.create new file `confg/initializers/omniauth.rb` and fill in the uid and secret: 
+
+```
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :doorkeeper,"26322d2e8b1a9f1c4aa90e564c2d75b88284820189205c69e489c0bd56f3ab06", "4a95f5bc3abe35b39307cf8540bab66fe8cedad94f174ab6724fcfccac502bc4"
+end
+```
+
+Note: the `uid` and `screet` are the code that you got while you are creating a app. See the figure below:
+
+<img src="/lib/uid_secret.png">
+
+And you have to login as a developer before creating new apps
+
+3. create file `confg/initializers/doorkeeper.rb`
+
+```
+require 'omniauth-oauth2'
+
+module OmniAuth
+  module Strategies
+    class Doorkeeper < OmniAuth::Strategies::OAuth2
+      option :name, 'doorkeeper'
+      option :client_options, {
+          site: ApplicationHelper::PROVIDER_DOMAIN,
+          authorize_url: ApplicationHelper::OAUTHORIZE_URL
+      }
+
+      uid {
+        raw_info['user']['id']
+      }
+
+      info do
+        {
+            name: raw_info['user']['name'],
+            num: raw_info['user']['number'],
+            role: raw_info['user']['role'],
+            email: raw_info['user']['email'],
+            major: raw_info['user']['major'],
+            department: raw_info['user']['department'],
+            node: raw_info['access']['node'],
+            path: raw_info['access']['path'],
+        }
+      end
+
+      extra do
+        {raw_info: raw_info}
+      end
+
+      def raw_info
+        @raw_info ||= access_token.get('/me').parsed
+      end
+    end
+  end
+end
+```
+
+
+
 
 1.Student Login
 
@@ -140,6 +206,9 @@ account:`admin@test.com`
 password:`password`
 
 the number in account can be replaced by 2,3... and so on
+
+
+
 
 ## Deployment
 
