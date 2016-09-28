@@ -1,19 +1,19 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  config.action_mailer.default_url_options = { host: 'livedemo.01fanli.com'}
+  config.action_mailer.default_url_options = {host: 'ucas-portal.herokuapp.com'}
 
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
 
 
   ActionMailer::Base.smtp_settings = {
-      :address        => 'smtp.163.com',
-      :port           => '25',
+      :address => 'smtp.163.com',
+      :port => '25',
       :authentication => :login,
-      :user_name      => ENV['163MAIL_USERNAME'],
-      :password       => ENV['163MAIL_PASSWORD'],
-      :domain         => 'www.163.com',
+      :user_name => ENV['163MAIL_USERNAME'],
+      :password => ENV['163MAIL_PASSWORD'],
+      :domain => 'www.163.com',
       :enable_starttls_auto => true
   }
 
@@ -28,7 +28,7 @@ Rails.application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
