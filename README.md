@@ -18,6 +18,20 @@ Developers could login in UcasPortal and create new apps and configue the OAuth 
 
 This repertory is the main portal and we have a sample application just for [demo](https://github.com/PENGZhaoqing/UcasPortal_SampleApp) 
 
+## ScreenShoot 
+
+<img src="/lib/screenshoot1.png" width="700">
+
+<img src="/lib/screenshoot2.png" width="700">
+
+<img src="/lib/screenshoot3.png" width="700">
+
+<img src="/lib/screenshoot4.png" width="700">
+
+<img src="/lib/screenshoot5.png" width="700">
+
+<img src="/lib/screenshoot6.png" width="700">
+
 ## Getting Started
 
 UcasPortal depends on doorkeeper gem and rails_admin gem, and also use bootstrap for front end rendering.
