@@ -71,9 +71,7 @@ $ rake db:seed
 $ rails s 
 ```
 
-### Config
-
-* Mail Service
+## Mail Service Config
 
  We use 163 mail service for delivering the activation mail, If you would like to use the same service provider, just craete a 163 mail account and configure the following files: (note: make sure your 163 account has open the stmp function)
 
@@ -225,34 +223,35 @@ end
 
 ```
 
+## Login Account
 
-1.Student Login
+The following accounts are created in `db/seed.rb`, you can modify as you want:
 
-account:`student1@test.com`
+1. Student Login
 
-password:`password`
+ account:`student1@test.com`
 
-2.Teacher Login
+ password:`password`
 
-account:`teacher1@test.com`
+2. Teacher Login
 
-password:`password`
+ account:`teacher1@test.com`
 
-3.Developer Login
+ password:`password`
 
-account:`developer1@test.com`
+3. Developer Login
 
-password:`password`
+ account:`developer1@test.com`
 
-4.Admin Login
+ password:`password`
 
-account:`admin@test.com`
+4. Admin Login
 
-password:`password`
+ account:`admin@test.com`
 
-the number in account can be replaced by 2,3... and so on
+ password:`password`
 
-
+The number in account can be replaced by 2,3... and so on
 
 
 ## Deployment
