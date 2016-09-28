@@ -113,7 +113,7 @@ $ rails s
    }
  ```
 
-### Usage
+## Usage
 
 We take a rails app as an example to explain how to connect with campus portal using OAuth protocol.
 
@@ -135,7 +135,7 @@ Note: the `uid` and `screet` are the code that you got while you are creating a 
 
 And you have to login as a developer before creating new apps
 
-3. create file `confg/initializers/doorkeeper.rb`
+3.create file `confg/initializers/doorkeeper.rb`, and write the following code to config with OmniAuth gem : 
 
 ```
 require 'omniauth-oauth2'
@@ -145,8 +145,8 @@ module OmniAuth
     class Doorkeeper < OmniAuth::Strategies::OAuth2
       option :name, 'doorkeeper'
       option :client_options, {
-          site: ApplicationHelper::PROVIDER_DOMAIN,
-          authorize_url: ApplicationHelper::OAUTHORIZE_URL
+          site: "https://ucas-portal.herokuapp.com",
+          authorize_url: "https://ucas-portal.herokuapp.com/oauth/authorize"
       }
 
       uid {
@@ -178,7 +178,52 @@ module OmniAuth
 end
 ```
 
+4.Make sure your routes (confg/routes) point to the right controller and action: 
 
+```
+ get '/auth/failure' => 'sessions#failure'
+ get '/auth/:provider/callback' => 'sessions#callback'
+```
+
+5.Then you can call `auth_hash` function to get user data, for example, the user name can be got by `auth_hash[:info][:name]`
+
+
+```
+class SessionsController < ApplicationController
+  include SessionsHelper
+  
+  ...
+  
+  def callback
+      @user = User.new
+      @user.name=auth_hash[:info][:name]
+      @user.num=auth_hash[:info][:num]
+      @user.role=auth_hash[:info][:role]
+      @user.email=auth_hash[:info][:email]
+      @user.major=auth_hash[:info][:major]
+      @user.department=auth_hash[:info][:department]
+      @user.node=auth_hash[:info][:node]
+      @user.path=auth_hash[:info][:path]
+      if @user.save!
+        log_in(@user)
+        redirect_to root_url, flash: {success: "Welcome: #{@user.name} :)"}
+      else
+        redirect_to root_url, flash: {danger: "Try again, please"}
+      end
+    end
+  end
+  
+  ...
+
+  private
+
+  def auth_hash
+    request.env['omniauth.auth']
+  end
+
+end
+
+```
 
 
 1.Student Login
