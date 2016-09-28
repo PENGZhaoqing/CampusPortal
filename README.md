@@ -254,13 +254,13 @@ The following accounts are created in `db/seed.rb`, you can modify as you want:
 The number in account can be replaced by 2,3... and so on
 
 
-## Deployment
+## How to contribute
 
-### Prerequisities
-* Ubantu 14.04 
-* [Phusion passenger](https://www.phusionpassenger.com/)
-* [Apache] (https://httpd.apache.org/download.cgi) 
+Fork this first, modify the branch and pull request back to master
 
+Contributors Welcome! Please feel free to contribute this project
+
+If you like this app, start it. thanks ! 
 
 
 
