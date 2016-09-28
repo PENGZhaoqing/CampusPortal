@@ -75,6 +75,8 @@ $ rails s
 
 * Mail Service
 
+We use 163 mail service for delivering the activation mail, If you would like to use the same service provider, just craete a 163 mail account and configure the following files: (note: make sure your 163 account has open the stmp function)
+
 1.create a file `conf/local_env.yml`, and fill in as followings:
 
 ```
@@ -84,9 +86,32 @@ $ rails s
  
 2.modify the the code in 'app/mailers/application_mailer.rb'
 
+```
+class ApplicationMailer < ActionMailer::Base
+  default from: "your_mail_account@163.com"
+  layout 'mailer'
+end
+```
+
+If you choose other mailer service provider, please config the following in `config/environments/production.rb`
+
+```
+  config.action_mailer.default_url_options = {host: 'your_site_domain.com'}
+
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
 
 
-
+  ActionMailer::Base.smtp_settings = {
+      :address => 'smtp.163.com',
+      :port => '25',
+      :authentication => :login,
+      :user_name => ENV['163MAIL_USERNAME'],
+      :password => ENV['163MAIL_PASSWORD'],
+      :domain => 'www.163.com',
+      :enable_starttls_auto => true
+  }
+```
 
 ### Usage
 
