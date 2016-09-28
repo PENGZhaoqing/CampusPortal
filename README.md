@@ -4,7 +4,7 @@ CampusPortal is a campus portals information system for Chinese Academy of Scien
 
 ## Motivation
 
-UcasPortal ultizes [OAuth 2.0](https://oauth.net/2/) protocol to achieve the interactive communication within mulitple heterogeneous web apps, therefore, UcasPortal can act as the main login panel for campus users and web app developers who are going to conncet their apps with UcasPortal. 
+CampusPortal ultizes [OAuth 2.0](https://oauth.net/2/) protocol to achieve the interactive communication within mulitple heterogeneous web apps, therefore, UcasPortal can act as the main login panel for campus users and web app developers who are going to conncet their apps with CampusPortal. 
 
 * For the campus users, which means faculities and students, UcasPortal is a SSO (Single Sign-on) platform. Once campus users logined in UcasPortal, they could have access to all relative campus applications without providing other username and password.
 
@@ -12,7 +12,14 @@ UcasPortal ultizes [OAuth 2.0](https://oauth.net/2/) protocol to achieve the int
 
 * Developers could login in UcasPortal and create new apps and configue the OAuth conncetion to owned app. Besides, in UcasPortal, Developers can also decide the target users who they are providing service to. 
 
-And we have an sample course selection system for [demo](https://github.com/PENGZhaoqing/UcasPortal_SampleApp) the interaction with it 
+And we also have an sample course selection system [CourseSelect_en](https://github.com/PENGZhaoqing/CourseSelect_en) to demonstrate the OAuth interaction. 
+
+## Features
+
+* Multi-role Login (students, teachers, developers and admins)
+* Account Mail Acivation (and Password Reset by mail)
+* OAuth Provider (other apps can use our OAuth service)
+* Access Management (by authorizaiton data tree) 
 
 ## ScreenShoot 
 
