@@ -1,4 +1,4 @@
-# CampusPortal (Doorkeeper) [![Build Status](https://travis-ci.org/PENGZhaoqing/UcasPortal.svg?branch=master)](https://travis-ci.org/PENGZhaoqing/UcasPortal)
+# CampusPortal (Doorkeeper) [![Build Status](https://travis-ci.org/PENGZhaoqing/CampusPortal.svg?branch=master)](https://travis-ci.org/PENGZhaoqing/UcasPortal)
 
 CampusPortal is a campus portals information system for Chinese Academy of Science, which is developed to provide as unified access entrance for the faculties, students and campus application developers.
 
