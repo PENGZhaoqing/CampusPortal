@@ -9,13 +9,13 @@ class IconUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
-  storage :fog
+  # storage :fog
 
-  # if Rails.env.production?
-  #   storage :fog
-  # else
-  #   storage :file
-  # end
+  if Rails.env.production?
+    storage :fog
+  else
+    storage :file
+  end
 
   def cache_dir
     "#{Rails.root}/tmp/uploads"
