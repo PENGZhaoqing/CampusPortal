@@ -1,4 +1,4 @@
-# CampusPortal (Doorkeeper) [![Build Status](https://travis-ci.org/PENGZhaoqing/UcasPortal.svg?branch=master)](https://travis-ci.org/PENGZhaoqing/UcasPortal)
+# CampusPortal (Doorkeeper) [![Build Status](https://travis-ci.org/PENGZhaoqing/CampusPortal.svg?branch=master)](https://travis-ci.org/PENGZhaoqing/UcasPortal)
 
 CampusPortal is a campus portals information system for Chinese Academy of Science, which is developed to provide as unified access entrance for the faculties, students and campus application developers.
 
@@ -49,14 +49,12 @@ Before getting started, make sure your system has the follwoing requirements:
 * [Rails 4.2.x](http://rubyonrails.org/download)
 * [RubyGems](https://rubygems.org/)
 * [Ruby 2.2.x](https://www.ruby-lang.org/en/downloads/)
-* ...
 
 #### Ruby Dependencies
 
 * [Doorkeeper](https://github.com/doorkeeper-gem/doorkeeper)
 * [Rails_admin](https://github.com/sferik/rails_admin)
 * [Bootstrap](http://getbootstrap.com/) 
-* ...
 
 ### Installation
 
@@ -71,9 +69,7 @@ $ rake db:seed
 $ rails s 
 ```
 
-### Config
-
-* Mail Service
+## Config Mail Service 
 
  We use 163 mail service for delivering the activation mail, If you would like to use the same service provider, just craete a 163 mail account and configure the following files: (note: make sure your 163 account has open the stmp function)
 
@@ -111,43 +107,158 @@ $ rails s
        :domain => 'www.163.com',
        :enable_starttls_auto => true
    }
+ ```
+
+## OAuth Usage
+
+We take a rails app as an example to explain how to connect with campus portal using OAuth protocol.
+
+1.add omniauth-oauth2 gem to `Gemfile` and run `bundle install`:
+
+`gem 'omniauth-oauth2', '~> 1.3.1'`
+
+2.create new file `confg/initializers/omniauth.rb` and fill in the uid and secret: 
+
+```
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :doorkeeper,"26322d2e8b1a9f1c4aa90e564c2d75b88284820189205c69e489c0bd56f3ab06", "4a95f5bc3abe35b39307cf8540bab66fe8cedad94f174ab6724fcfccac502bc4"
+end
 ```
 
-### Usage
+Note: the `uid` and `screet` are the code that you got while you are creating a app. See the figure below:
 
-1.Student Login
+<img src="/lib/uid_secret.png">
 
-account:`student1@test.com`
+And you have to login as a developer before creating new apps
 
-password:`password`
+3.create file `confg/initializers/doorkeeper.rb`, and write the following code to config with OmniAuth gem : 
 
-2.Teacher Login
+```
+require 'omniauth-oauth2'
 
-account:`teacher1@test.com`
+module OmniAuth
+  module Strategies
+    class Doorkeeper < OmniAuth::Strategies::OAuth2
+      option :name, 'doorkeeper'
+      option :client_options, {
+          site: "https://ucas-portal.herokuapp.com",
+          authorize_url: "https://ucas-portal.herokuapp.com/oauth/authorize"
+      }
 
-password:`password`
+      uid {
+        raw_info['user']['id']
+      }
 
-3.Developer Login
+      info do
+        {
+            name: raw_info['user']['name'],
+            num: raw_info['user']['number'],
+            role: raw_info['user']['role'],
+            email: raw_info['user']['email'],
+            major: raw_info['user']['major'],
+            department: raw_info['user']['department'],
+            node: raw_info['access']['node'],
+            path: raw_info['access']['path'],
+        }
+      end
 
-account:`developer1@test.com`
+      extra do
+        {raw_info: raw_info}
+      end
 
-password:`password`
+      def raw_info
+        @raw_info ||= access_token.get('/me').parsed
+      end
+    end
+  end
+end
+```
 
-4.Admin Login
+4.Make sure your routes (confg/routes) point to the right controller and action: 
 
-account:`admin@test.com`
+```
+ get '/auth/failure' => 'sessions#failure'
+ get '/auth/:provider/callback' => 'sessions#callback'
+```
 
-password:`password`
+5.Then you can call `auth_hash` function to get user data, for example, the user name can be got by `auth_hash[:info][:name]`
 
-the number in account can be replaced by 2,3... and so on
 
-## Deployment
+```
+class SessionsController < ApplicationController
+  include SessionsHelper
+  
+  ...
+  
+  def callback
+      @user = User.new
+      @user.name=auth_hash[:info][:name]
+      @user.num=auth_hash[:info][:num]
+      @user.role=auth_hash[:info][:role]
+      @user.email=auth_hash[:info][:email]
+      @user.major=auth_hash[:info][:major]
+      @user.department=auth_hash[:info][:department]
+      @user.node=auth_hash[:info][:node]
+      @user.path=auth_hash[:info][:path]
+      if @user.save!
+        log_in(@user)
+        redirect_to root_url, flash: {success: "Welcome: #{@user.name} :)"}
+      else
+        redirect_to root_url, flash: {danger: "Try again, please"}
+      end
+    end
+  end
+  
+  ...
 
-### Prerequisities
-* Ubantu 14.04 
-* [Phusion passenger](https://www.phusionpassenger.com/)
-* [Apache] (https://httpd.apache.org/download.cgi) 
+  private
 
+  def auth_hash
+    request.env['omniauth.auth']
+  end
+
+end
+
+```
+
+## Login 
+
+The following accounts are created in `db/seed.rb`, you can modify as you want:
+
+1. Student Login
+
+ account:`student1@test.com`
+
+ password:`password`
+
+2. Teacher Login
+
+ account:`teacher1@test.com`
+
+ password:`password`
+
+3. Developer Login
+
+ account:`developer1@test.com`
+
+ password:`password`
+
+4. Admin Login
+
+ account:`admin@test.com`
+
+ password:`password`
+
+The number in account can be replaced by 2,3... and so on
+
+
+## How to contribute
+
+Fork this first, modify the branch and pull request back to master
+
+Contributors Welcome! Please feel free to contribute this project
+
+If you like this app, start it. thanks ! 
 
 
 
