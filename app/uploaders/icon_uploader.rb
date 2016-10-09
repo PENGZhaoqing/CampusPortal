@@ -8,8 +8,8 @@ class IconUploader < CarrierWave::Uploader::Base
   process resize_to_limit: [100, 100]
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  # storage :file
+  storage :fog
 
   # if Rails.env.production?
   #   storage :fog
